@@ -4,21 +4,20 @@ part of over_react.component_declaration.redux_component_test;
 UiFactory<TestRedrawOnProps> TestRedrawOn;
 
 @Props()
-class TestRedrawOnProps extends ReduxUiProps {}
+class TestRedrawOnProps
+    extends ReduxUiProps<BaseState, BaseStateBuilder, BaseActions> {}
 
 @Component()
-class TestRedrawOnComponent extends ReduxUiComponent<TestRedrawOnProps> {
-  int numberOfRedraws = 0;
+class TestRedrawOnComponent
+    extends ReduxUiComponent<BaseState, BaseStateBuilder, BaseActions, int> {
+  @override
+  render() => Dom.div()(reduxState);
 
   @override
-  render() => Dom.div()();
-
-  @override
-  redrawOn() => [props.store.stream, props.store.state.store1.stream, props.store.state.store2.stream];
+  connect(BaseState state) => state.count;
 
   @override
   void setState(_, [callback()]) {
-    numberOfRedraws++;
     if (callback != null) callback();
   }
 }

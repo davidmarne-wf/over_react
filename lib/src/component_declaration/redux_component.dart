@@ -51,9 +51,12 @@ abstract class ReduxUiProps<V extends Built<V, B>, B extends Builder<V, B>,
 /// Use with the over_react transformer via the `@Component()` ([annotations.Component]) annotation.
 ///
 /// > Related: [ReduxUiStatefulComponent]
-abstract class ReduxUiComponent<V extends Built<V, B>, B extends Builder<V, B>,
-        A extends ReduxActions, T extends ReduxUiProps<V, B, A>, Substate>
-    extends UiComponent<T> with _ReduxComponentMixin<V, B, A, Substate> {
+abstract class ReduxUiComponent<
+        V extends Built<V, B>,
+        B extends Builder<V, B>,
+        A extends ReduxActions,
+        Substate> extends UiComponent<ReduxUiProps<V, B, A>>
+    with _ReduxComponentMixin<V, B, A, Substate> {
   @mustCallSuper
   @override
   void componentWillMount() {
