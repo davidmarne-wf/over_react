@@ -87,8 +87,7 @@ abstract class ReduxUiStatefulComponent<
         B extends Builder<V, B>,
         A extends ReduxActions,
         S extends UiState,
-        T extends ReduxUiProps<V, B, A>,
-        Substate> extends UiStatefulComponent<T, S>
+        Substate> extends UiStatefulComponent<ReduxUiProps<V, B, A>, S>
     with _ReduxComponentMixin<V, B, A, Substate> {
   @mustCallSuper
   @override
